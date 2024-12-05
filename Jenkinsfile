@@ -1,6 +1,11 @@
 pipeline {
     
-    agent any  
+    agent {
+        any { 
+            image 'node:12.16.2' 
+            args '-p 3000:3000' 
+        }
+    }  
 
     environment {
         REGISTRY_URL = 'https://registry.mydomain.com'
@@ -19,12 +24,6 @@ pipeline {
         }
  
         stage('Yarn Install') {
-             agent {
-                docker {
-                    image "${env.NODE_IMAGE}"
-                    args "${env.NODE_IMAGE_ARGS}"
-                }
-            }
             steps {
                 echo 'Yarn Install'
                 echo '******************************'  
@@ -39,10 +38,11 @@ pipeline {
                 echo '******************************'
             }
         }
-        stage('Yarn Build') {
+        stage('Build') {
             steps {
-                echo 'Yarn Build'
-                echo '******************************'
+                sh 'node --version'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
  
