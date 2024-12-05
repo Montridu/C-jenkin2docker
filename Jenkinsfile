@@ -27,8 +27,7 @@ pipeline {
             steps {
                 echo 'Yarn Install'
                 echo '******************************'  
-                sh 'node --version'
-                sh 'yarn --version'
+
             }
         }
          stage('Security') {
@@ -43,6 +42,7 @@ pipeline {
                 sh 'node --version'
                 sh 'npm install'
                 sh 'npm run build'
+                sh 'node --version'
             }
         }
  
