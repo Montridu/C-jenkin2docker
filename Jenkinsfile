@@ -1,9 +1,5 @@
 pipeline {
-     agent {
-        any {
-          image 'node:10.11.0-alpine'
-        }
-     }
+    agent any
 
     environment {
         REGISTRY_URL = 'https://registry.mydomain.com'
@@ -37,9 +33,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "npm install"
-                sh "npm run build"
-                sh 'node --version'
+                sh "/usr/bin/npm install"
             }
         }
  
