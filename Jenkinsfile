@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     environment {
         REGISTRY_URL = 'https://registry.mydomain.com'
         NODE_IMAGE = 'node:12.13.0'
